@@ -39,7 +39,7 @@ open class Segmentio: UIView {
         didSet {
             if selectedSegmentioIndex != oldValue {
                 reloadSegmentio()
-                valueDidChange?(self, selectedSegmentioIndex)
+				valueDidChange?(self, selectedSegmentioIndex)
             }
         }
     }
@@ -88,6 +88,10 @@ open class Segmentio: UIView {
             frame: frameForSegmentCollectionView(),
             collectionViewLayout: layout
         )
+		
+		if #available(iOS 9.0, *) {
+			collectionView.semanticContentAttribute = .forceLeftToRight
+		}
         
         collectionView.dataSource = self
         collectionView.delegate = self
